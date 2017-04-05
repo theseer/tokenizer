@@ -14,9 +14,9 @@
   },
   "require": {
     "php": "^7.0",
-    "ext/xmlwriter": "*",
-    "ext/dom": "*",
-    "ext/tokenizer": "*"
+    "ext-xmlwriter": "*",
+    "ext-dom": "*",
+    "ext-tokenizer": "*"
   },
   "autoload": {
     "classmap": [
