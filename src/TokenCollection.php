@@ -39,7 +39,7 @@ class TokenCollection implements \ArrayAccess, \Iterator, \Countable {
      */
     public function next() {
         next($this->tokens);
-        $this->pos ++;
+        $this->pos++;
     }
 
     /**
@@ -85,6 +85,7 @@ class TokenCollection implements \ArrayAccess, \Iterator, \Countable {
                 sprintf('No Token at offest %s', $offset)
             );
         }
+
         return $this->tokens[$offset];
     }
 
