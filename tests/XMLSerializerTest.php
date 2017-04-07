@@ -33,5 +33,11 @@ class XMLSerializerTest extends TestCase {
         $this->assertEquals('source', $result->documentElement->localName);
     }
 
+    public function testCanBeSerializedToXmlWithCustomNamespace() {
+        $expected = file_get_contents(__DIR__ . '/_files/customns.xml');
+
+        $serializer = new XMLSerializer(new NamespaceUri('custom:xml:namespace'));
+        $this->assertEquals($expected, $serializer->toXML($this->tokens));
+    }
 
 }

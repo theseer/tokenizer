@@ -16,6 +16,23 @@ class XMLSerializer {
     private $previousToken;
 
     /**
+     * @var NamespaceUri
+     */
+    private $xmlns;
+
+    /**
+     * XMLSerializer constructor.
+     *
+     * @param NamespaceUri $xmlns
+     */
+    public function __construct(NamespaceUri $xmlns = null) {
+        if ($xmlns === null) {
+            $xmlns = new NamespaceUri('https://github.com/theseer/tokenizer');
+        }
+        $this->xmlns = $xmlns;
+    }
+
+    /**
      * @param TokenCollection $tokens
      *
      * @return DOMDocument
@@ -39,7 +56,7 @@ class XMLSerializer {
         $this->writer->setIndent(true);
         $this->writer->startDocument();
         $this->writer->startElement('source');
-        $this->writer->writeAttribute('xmlns', 'https://github.com/theseer/tokenizer');
+        $this->writer->writeAttribute('xmlns', $this->xmlns->asString());
         $this->writer->startElement('line');
         $this->writer->writeAttribute('no', '1');
 
