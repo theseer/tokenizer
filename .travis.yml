@@ -17,7 +17,6 @@ install:
 script: ./tools/phpunit
 
 php:
-  - 5.6
   - 7.0
   - 7.1
   - 7.0snapshot
