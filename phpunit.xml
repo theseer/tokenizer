@@ -7,7 +7,7 @@
          beStrictAboutTestsThatDoNotTestAnything="true"
          beStrictAboutTodoAnnotatedTests="true"
          verbose="true">
-    <testsuite name="Tokenizer">
+    <testsuite>
         <directory suffix="Test.php">tests</directory>
     </testsuite>
 
@@ -18,7 +18,8 @@
     </filter>
 
     <logging>
-        <log type="coverage-html" target="build/coverage/html" lowUpperBound="60" highLowerBound="90"/>
+        <log type="coverage-html" target="build/coverage/html" title="phpDox"
+             charset="UTF-8" highlight="true" lowUpperBound="60" highLowerBound="90"/>
     </logging>
 
 </phpunit>

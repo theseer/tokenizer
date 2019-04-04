@@ -11,7 +11,7 @@ class XMLSerializerTest extends TestCase {
     /** @var TokenCollection $tokens */
     private $tokens;
 
-    protected function setUp(): void {
+    protected function setUp() {
         $this->tokens = unserialize(
             file_get_contents(__DIR__ . '/_files/test.php.tokens'),
             [TokenCollection::class]
