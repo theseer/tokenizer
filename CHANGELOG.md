@@ -2,6 +2,13 @@
 
 All notable changes to Tokenizer are documented in this file using the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [1.1.2] - 2019-04-04
+
+### Changed
+
+* Reverted PHPUnit 8 test update to stay PHP 7.0 compliant
+
+
 ## [1.1.1] - 2019-04-03
 
 ### Fixed
