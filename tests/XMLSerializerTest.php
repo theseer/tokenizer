@@ -40,4 +40,11 @@ class XMLSerializerTest extends TestCase {
         $this->assertEquals($expected, $serializer->toXML($this->tokens));
     }
 
+    public function testEmptyCollectionCreatesEmptyDocument() {
+        $expected = file_get_contents(__DIR__ . '/_files/empty.xml');
+
+        $serializer = new XMLSerializer();
+        $this->assertEquals($expected, $serializer->toXML((new TokenCollection())));
+    }
+
 }

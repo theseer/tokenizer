@@ -57,12 +57,15 @@ class XMLSerializer {
         $this->writer->startDocument();
         $this->writer->startElement('source');
         $this->writer->writeAttribute('xmlns', $this->xmlns->asString());
-        $this->writer->startElement('line');
-        $this->writer->writeAttribute('no', '1');
 
-        $this->previousToken = $tokens[0];
-        foreach ($tokens as $token) {
-            $this->addToken($token);
+        if (count($tokens) > 0) {
+            $this->writer->startElement('line');
+            $this->writer->writeAttribute('no', '1');
+
+            $this->previousToken = $tokens[0];
+            foreach ($tokens as $token) {
+                $this->addToken($token);
+            }
         }
 
         $this->writer->endElement();
