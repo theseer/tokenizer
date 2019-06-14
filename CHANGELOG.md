@@ -2,6 +2,12 @@
 
 All notable changes to Tokenizer are documented in this file using the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [1.1.3] - 2019-06-14
+
+### Fixed
+
+* Ensure XMLSerializer can deal with empty token collections
+
 ## [1.1.2] - 2019-04-04
 
 ### Changed
