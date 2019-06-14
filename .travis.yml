@@ -23,6 +23,7 @@ php:
   - 7.1snapshot
   - 7.2
   - 7.3
+  - 7.4snapshot
   - master
 
 matrix:
