@@ -33,7 +33,7 @@ class TokenCollectionTest extends TestCase {
         $this->collection->addToken($token);
 
         foreach($this->collection as $position => $current) {
-            $this->assertInternalType('integer', $position);
+            $this->assertIsInt( $position);
             $this->assertSame($token, $current);
         }
     }
