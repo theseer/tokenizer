@@ -8,7 +8,7 @@ class TokenTest extends TestCase {
     /** @var  Token */
     private $token;
 
-    protected function setUp() {
+    protected function setUp(): void {
         $this->token = new Token(1,'test-dummy', 'blank');
     }
 

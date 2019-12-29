@@ -11,7 +11,7 @@ class TokenCollectionTest extends TestCase {
     /** @var  TokenCollection */
     private $collection;
 
-    protected function setUp() {
+    protected function setUp(): void {
         $this->collection = new TokenCollection();
     }
 
