@@ -1,7 +1,22 @@
+language: php
+
+sudo: false
+
+cache:
+  directories:
+    - "$HOME/.phive"
+    - "$HOME/.phive/phars"
+    - "$HOME/.cache/composer"
+    - "$HOME/.composer/cache"
+    - "$HOME/.gnupg"
+
 os:
 - linux
 
-language: php
+addons:
+  apt:
+    packages:
+      - ant
 
 before_install:
   - wget https://phar.io/releases/phive.phar
