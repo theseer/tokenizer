@@ -2,6 +2,19 @@
 
 All notable changes to Tokenizer are documented in this file using the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [1.2.0] - 2020-07-13
+
+This release is now PHP 8.0 compliant.
+
+### Fixed
+
+* Whitespace handling in general (only noticable in the intermediate `TokenCollection`) is now consitent  
+
+### Changed
+
+* Updated `Tokenizer` to deal with changed whitespace handling in PHP 8.0
+  The XMLSerializer was unaffected.
+
 
 ## [1.1.3] - 2019-06-14
 
