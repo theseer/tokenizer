@@ -14,7 +14,7 @@ class TokenizerTest extends TestCase {
 
         $expected = unserialize(
             file_get_contents(__DIR__ . '/_files/test.php.tokens'),
-            [TokenCollection::class]
+            [TokenCollection::class, Token::class]
         );
         $this->assertEquals($expected, $result);
     }
