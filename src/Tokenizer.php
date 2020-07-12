@@ -46,7 +46,7 @@ class Tokenizer {
             return $result;
         }
 
-        $tokens = token_get_all($source);
+        $tokens = \token_get_all($source);
 
         $lastToken = new Token(
             $tokens[0][2],
@@ -54,8 +54,8 @@ class Tokenizer {
             ''
         );
 
-        foreach($tokens as $pos => $tok) {
-            if (is_string($tok)) {
+        foreach ($tokens as $pos => $tok) {
+            if (\is_string($tok)) {
                 $token = new Token(
                     $lastToken->getLine(),
                     $this->map[$tok],
@@ -63,16 +63,17 @@ class Tokenizer {
                 );
                 $result->addToken($token);
                 $lastToken = $token;
+
                 continue;
             }
 
-            $line = $tok[2];
-            $values = preg_split('/\R+/Uu', $tok[1]);
+            $line   = $tok[2];
+            $values = \preg_split('/\R+/Uu', $tok[1]);
 
-            foreach($values as $v) {
+            foreach ($values as $v) {
                 $token = new Token(
                     $line,
-                    token_name($tok[0]),
+                    \token_name($tok[0]),
                     $v
                 );
                 $lastToken = $token;
@@ -90,17 +91,19 @@ class Tokenizer {
 
     private function fillBlanks(TokenCollection $tokens, int $maxLine): TokenCollection {
         /** @var Token $prev */
-        $prev = null;
+        $prev  = null;
         $final = new TokenCollection();
 
-        foreach($tokens as $token) {
+        foreach ($tokens as $token) {
             if ($prev === null) {
                 $final->addToken($token);
                 $prev = $token;
+
                 continue;
             }
 
             $gap = $token->getLine() - $prev->getLine();
+
             while ($gap > 1) {
                 $linebreak = new Token(
                     $prev->getLine() + 1,
@@ -117,6 +120,7 @@ class Tokenizer {
         }
 
         $gap = $maxLine - $prev->getLine();
+
         while ($gap > 0) {
             $linebreak = new Token(
                 $prev->getLine() + 1,
