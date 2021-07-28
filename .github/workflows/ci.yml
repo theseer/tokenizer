@@ -44,11 +44,6 @@ jobs:
           java-version: 11
           distribution: 'zulu'
 
-      # Install dependencies and handle caching in one go.
-      # @link https://github.com/marketplace/actions/install-composer-dependencies
-      - name: Install Composer dependencies
-        uses: "ramsey/composer-install@v1"
-
       - name: Install tools
         run: ant install-tools
 
