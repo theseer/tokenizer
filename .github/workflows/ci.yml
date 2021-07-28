@@ -1,0 +1,56 @@
+name: Test
+
+on:
+  # Run on all pushes and on all pull requests.
+  push:
+  pull_request:
+  # Allow manually triggering the workflow.
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      # Keys:
+      # - experimental: Whether the build is "allowed to fail".
+      matrix:
+        php: ['7.2', '7.3', '7.4', '8.0']
+        experimental: [false]
+
+        include:
+          # Nightly.
+          - php: '8.1'
+            experimental: true
+
+    name: "PHP: ${{ matrix.php }}"
+
+    continue-on-error: ${{ matrix.experimental }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: none
+          tools: phive
+
+      - name: Install java
+        uses: actions/setup-java@v2
+        with:
+          java-version: 11
+          distribution: 'zulu'
+
+      # Install dependencies and handle caching in one go.
+      # @link https://github.com/marketplace/actions/install-composer-dependencies
+      - name: Install Composer dependencies
+        uses: "ramsey/composer-install@v1"
+
+      - name: Install tools
+        run: ant install-tools
+
+      - name: Run unit tests
+        run: ./tools/phpunit
