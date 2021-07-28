@@ -11,6 +11,13 @@ class TokenizerTest extends TestCase {
         $this->assertParsedTokensMatchFixture('test.php');
     }
 
+    /**
+     * @ticket https://github.com/theseer/tokenizer/issues/13
+     */
+    public function testFileWithSingleEmptyLineGetsParsed(): void {
+        $this->assertParsedTokensMatchFixture('source_with_single_empty_line.php');
+    }
+
     private function assertParsedTokensMatchFixture(string $fixture): void
     {
         $expected = \unserialize(
