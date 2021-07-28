@@ -91,8 +91,12 @@ class Tokenizer {
     }
 
     private function fillBlanks(TokenCollection $tokens, int $maxLine): TokenCollection {
-        /** @var Token $prev */
-        $prev  = null;
+        $prev  = new Token(
+            0,
+            'Placeholder',
+            ''
+        );
+
         $final = new TokenCollection();
 
         foreach ($tokens as $token) {
