@@ -14,11 +14,7 @@
         <property name="prepare.done" value="true"/>
     </target>
 
-    <target name="-tools-installed">
-        <available file="${basedir}/tools" property="tools-installed" type="dir"/>
-    </target>
-
-    <target name="install-tools" unless="tools-installed" depends="-tools-installed" description="Install tools with Phive">
+    <target name="install-tools" description="Install tools with Phive">
         <exec executable="phive" taskname="phive">
             <arg value="install"/>
             <arg value="--trust-gpg-keys" />
