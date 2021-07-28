@@ -8,13 +8,25 @@ use PHPUnit\Framework\TestCase;
  */
 class TokenizerTest extends TestCase {
     public function testValidSourceGetsParsed(): void {
-        $tokenizer = new Tokenizer();
-        $result    = $tokenizer->parse(\file_get_contents(__DIR__ . '/_files/test.php'));
+        $this->assertParsedTokensMatchFixture('test.php');
+    }
 
+    /**
+     * @ticket https://github.com/theseer/tokenizer/issues/13
+     */
+    public function testFileWithSingleEmptyLineGetsParsed(): void {
+        $this->assertParsedTokensMatchFixture('source_with_single_empty_line.php');
+    }
+
+    private function assertParsedTokensMatchFixture(string $fixture): void
+    {
         $expected = \unserialize(
-            \file_get_contents(__DIR__ . '/_files/test.php.tokens'),
+            \file_get_contents(__DIR__ . '/_files/' . $fixture . '.tokens'),
             [TokenCollection::class, Token::class]
         );
-        $this->assertEquals($expected, $result);
+
+        $actual = (new Tokenizer)->parse(\file_get_contents(__DIR__ . '/_files/' . $fixture));
+
+        $this->assertEquals($expected, $actual);
     }
 }
