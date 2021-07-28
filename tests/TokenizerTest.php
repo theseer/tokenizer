@@ -18,8 +18,7 @@ class TokenizerTest extends TestCase {
         $this->assertParsedTokensMatchFixture('source_with_single_empty_line.php');
     }
 
-    private function assertParsedTokensMatchFixture(string $fixture): void
-    {
+    private function assertParsedTokensMatchFixture(string $fixture): void {
         $expected = \unserialize(
             \file_get_contents(__DIR__ . '/_files/' . $fixture . '.tokens'),
             [TokenCollection::class, Token::class]

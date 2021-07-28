@@ -82,6 +82,7 @@ class Tokenizer {
                 if ($v === '') {
                     continue;
                 }
+
                 $result->addToken($token);
             }
         }
