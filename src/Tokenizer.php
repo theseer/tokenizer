@@ -1,6 +1,8 @@
 <?php declare(strict_types = 1);
 namespace TheSeer\Tokenizer;
 
+use function var_dump;
+
 class Tokenizer {
 
     /**
@@ -69,6 +71,18 @@ class Tokenizer {
 
             $line   = $tok[2];
             $values = \preg_split('/\R+/Uu', $tok[1]);
+
+            if (!$values) {
+                $result->addToken(
+                    new Token(
+                        $line,
+                        \token_name($tok[0]),
+                        '{binary data}'
+                    )
+                );
+
+                continue;
+            }
 
             foreach ($values as $v) {
                 $token = new Token(
