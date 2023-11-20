@@ -114,13 +114,6 @@ class Tokenizer {
         $final = new TokenCollection();
 
         foreach ($tokens as $token) {
-            if ($prev === null) {
-                $final->addToken($token);
-                $prev = $token;
-
-                continue;
-            }
-
             $gap = $token->getLine() - $prev->getLine();
 
             while ($gap > 1) {
