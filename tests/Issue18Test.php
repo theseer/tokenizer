@@ -4,6 +4,9 @@ namespace TheSeer\Tokenizer;
 use DOMXPath;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @ticket https://github.com/theseer/tokenizer/issues/18
+ */
 class Issue18Test extends TestCase {
 
     public function testIssueNoLongerOccurs() {
