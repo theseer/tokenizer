@@ -11,6 +11,13 @@ class TokenizerTest extends TestCase {
         $this->assertParsedTokensMatchFixture('test.php');
     }
 
+    public function testParsingEmptyStringReturnsEmptyCollection(): void {
+        $this->assertCount(
+            0,
+            (new Tokenizer())->parse('')
+        );
+    }
+
     /**
      * @ticket https://github.com/theseer/tokenizer/issues/13
      */
