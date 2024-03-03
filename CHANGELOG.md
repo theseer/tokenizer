@@ -2,7 +2,7 @@
 
 All notable changes to Tokenizer are documented in this file using the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
-## [1.2.3] - 2024-MM-DD
+## [1.2.3] - 2024-03-03
 
 ### Changed
 
