@@ -5,9 +5,6 @@ use DOMDocument;
 
 class XMLSerializer {
 
-    /** @var Token */
-    private $previousToken;
-
     /** @var NamespaceUri */
     private $xmlns;
 
@@ -43,15 +40,15 @@ class XMLSerializer {
             $writer->startElement('line');
             $writer->writeAttribute('no', '1');
 
-            $this->previousToken = $tokens[0];
+            $previousToken = $tokens[0];
 
             foreach ($tokens as $token) {
-                if ($this->previousToken->getLine() < $token->getLine()) {
+                if ($previousToken->getLine() < $token->getLine()) {
                     $writer->endElement();
         
                     $writer->startElement('line');
                     $writer->writeAttribute('no', (string)$token->getLine());
-                    $this->previousToken = $token;
+                    $previousToken = $token;
                 }
         
                 if ($token->getValue() !== '') {
