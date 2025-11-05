@@ -46,9 +46,11 @@ class XMLSerializer {
             $this->writer->startElement('line');
             $this->writer->writeAttribute('no', '1');
 
-            $this->previousToken = $tokens[0];
-
+            $this->previousToken = null;
             foreach ($tokens as $token) {
+                if ($this->previousToken === null) {
+                    $this->previousToken = $token;
+                }
                 $this->addToken($token);
             }
         }
