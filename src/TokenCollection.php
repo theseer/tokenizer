@@ -3,8 +3,12 @@ namespace TheSeer\Tokenizer;
 
 use ArrayIterator;
 use Countable;
+use Iterator;
 use IteratorAggregate;
 
+/**
+ * @implements IteratorAggregate<int, Token>
+ */
 class TokenCollection implements IteratorAggregate, Countable {
 
     /** @var Token[] */
@@ -14,7 +18,7 @@ class TokenCollection implements IteratorAggregate, Countable {
         $this->tokens[] = $token;
     }
 
-    public function getIterator()
+    public function getIterator(): Iterator
     {
         return new ArrayIterator($this->tokens);
     }

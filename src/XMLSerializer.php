@@ -8,7 +8,7 @@ class XMLSerializer {
     /** @var \XMLWriter */
     private $writer;
 
-    /** @var Token */
+    /** @var ?Token */
     private $previousToken;
 
     /** @var NamespaceUri */
