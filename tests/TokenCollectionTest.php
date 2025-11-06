@@ -24,7 +24,7 @@ class TokenCollectionTest extends TestCase {
         $this->collection->addToken($token);
 
         $this->assertCount(1, $this->collection);
-        $this->assertSame($token, $this->collection[0]);
+        $this->assertSame($token, $this->collection->getIterator()->current());
     }
 
     public function testCanIterateOverTokens(): void {
@@ -36,36 +36,5 @@ class TokenCollectionTest extends TestCase {
             $this->assertIsInt($position);
             $this->assertSame($token, $current);
         }
-    }
-
-    public function testOffsetCanBeUnset(): void {
-        $token = $this->createMock(Token::class);
-        $this->collection->addToken($token);
-
-        $this->assertCount(1, $this->collection);
-        unset($this->collection[0]);
-        $this->assertCount(0, $this->collection);
-    }
-
-    public function testTokenCanBeSetViaOffsetPosition(): void {
-        $token               = $this->createMock(Token::class);
-        $this->collection[0] = $token;
-        $this->assertCount(1, $this->collection);
-        $this->assertSame($token, $this->collection[0]);
-    }
-
-    public function testTryingToUseNonIntegerOffsetThrowsException(): void {
-        $this->expectException(TokenCollectionException::class);
-        $this->collection['foo'] = $this->createMock(Token::class);
-    }
-
-    public function testTryingToSetNonTokenAtOffsetThrowsException(): void {
-        $this->expectException(TokenCollectionException::class);
-        $this->collection[0] = 'abc';
-    }
-
-    public function testTryingToGetTokenAtNonExistingOffsetThrowsException(): void {
-        $this->expectException(TokenCollectionException::class);
-        $x = $this->collection[3];
     }
 }

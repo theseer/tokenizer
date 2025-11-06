@@ -32,7 +32,6 @@ class TokenizerTest extends TestCase {
         );
 
         $actual = (new Tokenizer)->parse(\file_get_contents(__DIR__ . '/_files/' . $fixture));
-
         $this->assertEquals($expected, $actual);
     }
 }
