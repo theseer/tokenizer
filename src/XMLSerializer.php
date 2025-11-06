@@ -40,18 +40,18 @@ class XMLSerializer {
             $writer->startElement('line');
             $writer->writeAttribute('no', '1');
 
-            $tokens->rewind();
-            $previousToken = $tokens->current();
+            $iterator = $tokens->getIterator();
+            $previousToken = $iterator->current();
 
-            foreach ($tokens as $token) {
+            foreach ($iterator as $token) {
                 if ($previousToken->getLine() < $token->getLine()) {
                     $writer->endElement();
-        
+
                     $writer->startElement('line');
                     $writer->writeAttribute('no', (string)$token->getLine());
                     $previousToken = $token;
                 }
-        
+
                 if ($token->getValue() !== '') {
                     $writer->startElement('token');
                     $writer->writeAttribute('name', $token->getName());
