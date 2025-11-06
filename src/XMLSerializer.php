@@ -40,7 +40,8 @@ class XMLSerializer {
             $writer->startElement('line');
             $writer->writeAttribute('no', '1');
 
-            $previousToken = $tokens[0];
+            $tokens->rewind();
+            $previousToken = $tokens->current();
 
             foreach ($tokens as $token) {
                 if ($previousToken->getLine() < $token->getLine()) {
