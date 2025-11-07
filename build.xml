@@ -31,7 +31,7 @@
     </target>
 
     <target name="test" depends="generate-autoloader" description="Run tests">
-        <exec executable="${basedir}/tools/phpunit" taskname="phpunit"/>
+        <exec executable="${basedir}/tools/phpunit" taskname="phpunit" failonerror="true"/>
     </target>
 </project>
 
