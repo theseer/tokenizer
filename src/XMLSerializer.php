@@ -58,7 +58,7 @@ class XMLSerializer {
                 if ($value !== '') {
                     $writer->startElement('token');
                     $writer->writeAttribute('name', $token->getName());
-                    $writer->writeRaw(\htmlspecialchars($value, \ENT_NOQUOTES | \ENT_DISALLOWED | \ENT_XML1));
+                    $writer->text($value);
                     $writer->endElement();
                 }
             }
