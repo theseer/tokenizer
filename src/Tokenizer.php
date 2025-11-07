@@ -48,21 +48,22 @@ class Tokenizer {
 
         $tokens = \token_get_all($source);
 
-        $lastToken = new Token(
+        $prev = new Token(
             $tokens[0][2],
             'Placeholder',
             ''
         );
+        $prevLine = $prev->getLine();
 
-        foreach ($tokens as $pos => $tok) {
+        foreach ($tokens as $tok) {
             if (\is_string($tok)) {
                 $token = new Token(
-                    $lastToken->getLine(),
+                    $prevLine,
                     $this->map[$tok],
                     $tok
                 );
                 $result->addToken($token);
-                $lastToken = $token;
+                $prevLine = $token->getLine();
 
                 continue;
             }
@@ -88,7 +89,7 @@ class Tokenizer {
                     \token_name($tok[0]),
                     $v
                 );
-                $lastToken = $token;
+                $prevLine = $token->getLine();
                 $line++;
 
                 if ($v === '') {
@@ -99,7 +100,7 @@ class Tokenizer {
             }
         }
 
-        return $this->fillBlanks($result, $lastToken->getLine());
+        return $this->fillBlanks($result, $prevLine);
     }
 
     private function fillBlanks(TokenCollection $tokens, int $maxLine): TokenCollection {
