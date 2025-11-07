@@ -110,35 +110,37 @@ class Tokenizer {
         );
 
         $final = new TokenCollection();
+        $prevLine = $prev->getLine();
 
         foreach ($tokens as $token) {
-            $gap = $token->getLine() - $prev->getLine();
+            $line = $token->getLine();
+            $gap = $line - $prevLine;
 
             while ($gap > 1) {
                 $linebreak = new Token(
-                    $prev->getLine() + 1,
+                    $prevLine + 1,
                     'T_WHITESPACE',
                     ''
                 );
                 $final->addToken($linebreak);
-                $prev = $linebreak;
+                $prevLine = $linebreak->getLine();
                 $gap--;
             }
 
             $final->addToken($token);
-            $prev = $token;
+            $prevLine = $line;
         }
 
-        $gap = $maxLine - $prev->getLine();
+        $gap = $maxLine - $prevLine;
 
         while ($gap > 0) {
             $linebreak = new Token(
-                $prev->getLine() + 1,
+                $prevLine + 1,
                 'T_WHITESPACE',
                 ''
             );
             $final->addToken($linebreak);
-            $prev = $linebreak;
+            $prevLine = $linebreak->getLine();
             $gap--;
         }
 
