@@ -8,7 +8,7 @@ class Tokenizer {
      *
      * @var array
      */
-    const MAP = [
+    private const MAP = [
         '(' => 'T_OPEN_BRACKET',
         ')' => 'T_CLOSE_BRACKET',
         '[' => 'T_OPEN_SQUARE',
