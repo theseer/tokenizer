@@ -42,20 +42,23 @@ class XMLSerializer {
 
             $iterator = $tokens->getIterator();
             $previousToken = $iterator->current();
+            $previousLine = $previousToken->getLine();
 
             foreach ($iterator as $token) {
-                if ($previousToken->getLine() < $token->getLine()) {
+                $line = $token->getLine();
+                if ($previousLine < $line) {
                     $writer->endElement();
 
                     $writer->startElement('line');
-                    $writer->writeAttribute('no', (string)$token->getLine());
-                    $previousToken = $token;
+                    $writer->writeAttribute('no', (string)$line);
+                    $previousLine = $line;
                 }
 
-                if ($token->getValue() !== '') {
+                $value = $token->getValue();
+                if ($value !== '') {
                     $writer->startElement('token');
                     $writer->writeAttribute('name', $token->getName());
-                    $writer->writeRaw(\htmlspecialchars($token->getValue(), \ENT_NOQUOTES | \ENT_DISALLOWED | \ENT_XML1));
+                    $writer->writeRaw(\htmlspecialchars($value, \ENT_NOQUOTES | \ENT_DISALLOWED | \ENT_XML1));
                     $writer->endElement();
                 }
             }
