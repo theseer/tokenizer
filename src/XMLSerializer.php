@@ -62,9 +62,10 @@ class XMLSerializer {
                     $writer->endElement();
                 }
             }
+
+            $writer->endElement();
         }
 
-        $writer->endElement();
         $writer->endElement();
         $writer->endDocument();
 
