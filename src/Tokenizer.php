@@ -48,20 +48,25 @@ class Tokenizer {
 
         $tokens = \token_get_all($source);
 
+        $lastLine = 0;
         $lastToken = new Token(
             $tokens[0][2],
             'Placeholder',
             ''
         );
 
-        foreach ($tokens as $pos => $tok) {
+        foreach ($tokens as $tok) {
             if (\is_string($tok)) {
                 $token = new Token(
                     $lastToken->getLine(),
                     self::MAP[$tok],
                     $tok
                 );
+
+                $this->addWhitespaceTokensForLines($result, $lastLine, $token->getLine() - 1);
+
                 $result->addToken($token);
+                $lastLine = $token->getLine();
                 $lastToken = $token;
 
                 continue;
@@ -71,13 +76,16 @@ class Tokenizer {
             $values = \preg_split('/\R+/Uu', $tok[1]);
 
             if (!$values) {
-                $result->addToken(
-                    new Token(
-                        $line,
-                        \token_name($tok[0]),
-                        '{binary data}'
-                    )
+                $token = new Token(
+                    $line,
+                    \token_name($tok[0]),
+                    '{binary data}'
                 );
+
+                $this->addWhitespaceTokensForLines($result, $lastLine, $token->getLine() - 1);
+
+                $result->addToken($token);
+                $lastLine = $token->getLine();
 
                 continue;
             }
@@ -92,58 +100,25 @@ class Tokenizer {
                 $line++;
 
                 if ($v === '') {
+                    // empty value means a line break; don't add token, but continue
                     continue;
                 }
 
+                $this->addWhitespaceTokensForLines($result, $lastLine, $token->getLine() - 1);
+
                 $result->addToken($token);
+                $lastLine = $token->getLine();
             }
         }
 
-        return $this->fillBlanks($result, $lastToken->getLine());
+        $this->addWhitespaceTokensForLines($result, $lastLine, $lastToken->getLine());
+
+        return $result;
     }
 
-    private function fillBlanks(TokenCollection $tokens, int $maxLine): TokenCollection {
-        $prev = new Token(
-            0,
-            'Placeholder',
-            ''
-        );
-
-        $final = new TokenCollection();
-        $prevLine = $prev->getLine();
-
-        foreach ($tokens as $token) {
-            $line = $token->getLine();
-            $gap = $line - $prevLine;
-
-            while ($gap > 1) {
-                $linebreak = new Token(
-                    $prevLine + 1,
-                    'T_WHITESPACE',
-                    ''
-                );
-                $final->addToken($linebreak);
-                $prevLine = $linebreak->getLine();
-                $gap--;
-            }
-
-            $final->addToken($token);
-            $prevLine = $line;
+    private function addWhitespaceTokensForLines(TokenCollection $result, int $startLine, int $endLine): void {
+        for ($line = $startLine + 1; $line <= $endLine; $line++) {
+            $result->addToken(new Token($line, 'T_WHITESPACE', ''));
         }
-
-        $gap = $maxLine - $prevLine;
-
-        while ($gap > 0) {
-            $linebreak = new Token(
-                $prevLine + 1,
-                'T_WHITESPACE',
-                ''
-            );
-            $final->addToken($linebreak);
-            $prevLine = $linebreak->getLine();
-            $gap--;
-        }
-
-        return $final;
     }
 }
