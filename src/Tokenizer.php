@@ -8,7 +8,7 @@ class Tokenizer {
      *
      * @var array
      */
-    private $map = [
+    private const MAP = [
         '(' => 'T_OPEN_BRACKET',
         ')' => 'T_CLOSE_BRACKET',
         '[' => 'T_OPEN_SQUARE',
@@ -58,7 +58,7 @@ class Tokenizer {
             if (\is_string($tok)) {
                 $token = new Token(
                     $lastToken->getLine(),
-                    $this->map[$tok],
+                    self::MAP[$tok],
                     $tok
                 );
                 $result->addToken($token);
