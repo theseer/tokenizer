@@ -2,6 +2,20 @@
 
 All notable changes to Tokenizer are documented in this file using the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [1.3.1] - 2025-111-17
+
+### Fixed
+
+* [#37](https://github.com/theseer/tokenizer/issues/37): v1.3.0 introduced a breaking change on the token collection (ArrayAccess interface removed)
+
+## [1.3.0] - 2025-11-13
+
+### Changed
+
+* Require at least PHP 7.3 for building, code should still be PHP 7.2 compliant
+* Merge various performance improvements provided by @staabm
+* Merge some code cleanups provided by @staabm
+
 ## [1.2.3] - 2024-03-03
 
 ### Changed
@@ -28,7 +42,7 @@ This release is now PHP 8.0 compliant.
 
 ### Fixed
 
-* Whitespace handling in general (only noticable in the intermediate `TokenCollection`) is now consitent  
+* Whitespace handling in general (only noticeable in the intermediate `TokenCollection`) is now consistent  
 
 ### Changed
 
@@ -76,6 +90,8 @@ This release is now PHP 8.0 compliant.
 
 Initial Release
 
+[1.3.1]: https://github.com/theseer/tokenizer/compare/1.3.0...1.3.1
+[1.3.0]: https://github.com/theseer/tokenizer/compare/1.2.3...1.3.0
 [1.2.3]: https://github.com/theseer/tokenizer/compare/1.2.2...1.2.3
 [1.2.2]: https://github.com/theseer/tokenizer/compare/1.2.1...1.2.2
 [1.2.1]: https://github.com/theseer/tokenizer/compare/1.2.0...1.2.1
