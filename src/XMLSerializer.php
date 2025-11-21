@@ -2,6 +2,7 @@
 namespace TheSeer\Tokenizer;
 
 use DOMDocument;
+use XMLWriter;
 
 class XMLSerializer {
 
@@ -32,6 +33,13 @@ class XMLSerializer {
         $writer = new \XMLWriter();
         $writer->openMemory();
         $writer->setIndent(true);
+
+        $this->appendToWriter($writer, $tokens);
+
+        return $writer->outputMemory();
+    }
+    
+    public function appendToWriter(XMLWriter $writer, TokenCollection $tokens): void {
         $writer->startDocument();
         $writer->startElement('source');
         $writer->writeAttribute('xmlns', $this->xmlns->asString());
@@ -68,7 +76,5 @@ class XMLSerializer {
 
         $writer->endElement();
         $writer->endDocument();
-
-        return $writer->outputMemory();
     }
 }
