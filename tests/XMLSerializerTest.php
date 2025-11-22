@@ -36,7 +36,7 @@ class XMLSerializerTest extends TestCase {
         $writer->startDocument();
         $serializer->appendToWriter($writer, $this->tokens);
         $writer->endDocument();
-        
+
         $this->assertEquals($expected, $writer->outputMemory());
     }
 
