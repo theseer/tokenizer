@@ -34,13 +34,14 @@ class XMLSerializer {
         $writer->openMemory();
         $writer->setIndent(true);
 
+        $writer->startDocument();
         $this->appendToWriter($writer, $tokens);
+        $writer->endDocument();
 
         return $writer->outputMemory();
     }
     
     public function appendToWriter(XMLWriter $writer, TokenCollection $tokens): void {
-        $writer->startDocument();
         $writer->startElement('source');
         $writer->writeAttribute('xmlns', $this->xmlns->asString());
 
@@ -75,6 +76,5 @@ class XMLSerializer {
         }
 
         $writer->endElement();
-        $writer->endDocument();
     }
 }
