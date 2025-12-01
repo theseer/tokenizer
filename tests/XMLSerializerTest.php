@@ -2,9 +2,9 @@
 namespace TheSeer\Tokenizer;
 
 use  DOMDocument;
-use function file_get_contents;
 use PHPUnit\Framework\TestCase;
 use XMLWriter;
+use function file_get_contents;
 
 /**
  * @covers \TheSeer\Tokenizer\XMLSerializer

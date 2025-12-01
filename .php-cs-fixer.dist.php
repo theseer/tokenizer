@@ -158,7 +158,12 @@ return (new PhpCsFixer\Config())
                     'method_private_static',
                 ],
             ],
-            'ordered_imports'                               => true,
+            // Group and order use-statements by type: classes/interfaces/traits, then functions, then constants
+            'ordered_imports'                               => [
+                'imports_order' => ['class', 'function', 'const'],
+                // keep alphabetical ordering within each group (default)
+                'sort_algorithm' => 'alpha',
+            ],
             'phpdoc_add_missing_param_annotation'           => true,
             'phpdoc_align'                                  => true,
             'phpdoc_annotation_without_dot'                 => true,

@@ -1,12 +1,12 @@
 <?php declare(strict_types = 1);
 namespace TheSeer\Tokenizer;
 
-use function count;
 use DOMDocument;
+use XMLWriter;
+use function count;
 use const ENT_DISALLOWED;
 use const ENT_NOQUOTES;
 use const ENT_XML1;
-use XMLWriter;
 
 class XMLSerializer {
     /** @var NamespaceUri */

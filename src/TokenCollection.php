@@ -3,13 +3,13 @@ namespace TheSeer\Tokenizer;
 
 use ArrayAccess;
 use ArrayIterator;
-use function count;
 use Countable;
+use Iterator;
+use IteratorAggregate;
+use function count;
 use function get_class;
 use function gettype;
 use function is_int;
-use Iterator;
-use IteratorAggregate;
 use function sprintf;
 
 /**
