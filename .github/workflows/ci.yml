@@ -36,13 +36,13 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
           coverage: none
-          tools: phive
+          tools: phive, composer
 
       - name: Install tools (phive)
         run: phive install --trust-gpg-keys 4AA394086372C20A,2A8299CE842DD38C,E82B2FB314E9906E
 
-      - name: Generate Autoloader (phpab)
-        run: ./tools/phpab --output ./src/autoload.php ./src
+      - name: Generate Autoloader
+        run: composer dump-autoload
 
       - name: Run unit tests (phpunit)
         run: ./tools/phpunit
