@@ -43,12 +43,7 @@ return (new PhpCsFixer\Config())
                     'yield',
                 ],
             ],
-            'braces'                                        => [
-                'allow_single_line_closure'                   => false,
-                'position_after_anonymous_constructs'         => 'same',
-                'position_after_control_structures'           => 'same',
-                'position_after_functions_and_oop_constructs' => 'same'
-            ],
+            // deprecated fixer removed: "braces"; use dedicated rules provided by PHP-CS-Fixer instead
             'cast_spaces'                                   => ['space' => 'none'],
 
             // This fixer removes the blank line at class start, no way to disable that, so we disable the fixer :(
@@ -92,12 +87,13 @@ return (new PhpCsFixer\Config())
                 'import_functions' => true,
             ],
             'native_function_invocation'                    => false,
-            'new_with_braces'                               => false,
+            // "new_with_braces" is deprecated → use "new_with_parentheses"
+            'new_with_parentheses'                          => false,
             'no_alias_functions'                            => true,
             'no_alternative_syntax'                         => true,
             'no_blank_lines_after_class_opening'            => false,
             'no_blank_lines_after_phpdoc'                   => true,
-            'no_blank_lines_before_namespace'               => true,
+            'blank_lines_before_namespace'                  => false,
             'no_closing_tag'                                => true,
             'no_empty_comment'                              => true,
             'no_empty_phpdoc'                               => true,
@@ -114,15 +110,17 @@ return (new PhpCsFixer\Config())
             'echo_tag_syntax'                               => ['format' => 'long'],
             'no_singleline_whitespace_before_semicolons'    => true,
             'no_spaces_after_function_name'                 => true,
-            'no_spaces_inside_parenthesis'                  => true,
+            // deprecated: no_spaces_inside_parenthesis → use spaces_inside_parentheses
+            'spaces_inside_parentheses'                     => ['space' => 'none'],
             'no_superfluous_elseif'                         => true,
             'no_superfluous_phpdoc_tags'                    => true,
-            'no_trailing_comma_in_list_call'                => true,
+            // deprecated: no_trailing_comma_in_list_call (covered by no_trailing_comma_in_singleline)
             'no_trailing_comma_in_singleline'               => true,
             'no_trailing_whitespace'                        => true,
             'no_trailing_whitespace_in_comment'             => true,
             'no_unneeded_control_parentheses'               => false,
-            'no_unneeded_curly_braces'                      => false,
+            // deprecated: no_unneeded_curly_braces → use no_unneeded_braces
+            'no_unneeded_braces'                            => false,
             'no_unneeded_final_method'                      => true,
             'no_unreachable_default_argument_value'         => true,
             'no_unset_on_property'                          => true,
@@ -201,13 +199,8 @@ return (new PhpCsFixer\Config())
             'trailing_comma_in_multiline'                   => false,
             'trim_array_spaces'                             => true,
             'unary_operator_spaces'                         => true,
-            'visibility_required'                           => [
-                'elements' => [
-                    'const',
-                    'method',
-                    'property',
-                ],
-            ],
+            // deprecated: visibility_required → use modifier_keywords
+            'modifier_keywords'                             => true,
             'void_return'                                   => true,
             'whitespace_after_comma_in_array'               => true,
             'yoda_style'                                    => false
