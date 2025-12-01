@@ -25,6 +25,21 @@ class XMLSerializerTest extends TestCase {
         $this->assertEquals($expected, $serializer->toXML($this->tokens));
     }
 
+    public function testCanAppendToWriter(): void {
+        $expected = \file_get_contents(__DIR__ . '/_files/test.php.xml');
+
+        $writer = new \XMLWriter();
+        $writer->openMemory();
+        $writer->setIndent(true);
+
+        $serializer = new XMLSerializer();
+        $writer->startDocument();
+        $serializer->appendToWriter($writer, $this->tokens);
+        $writer->endDocument();
+
+        $this->assertEquals($expected, $writer->outputMemory());
+    }
+
     public function testCanBeSerializedToDomDocument(): void {
         $serializer = new XMLSerializer();
         $result     = $serializer->toDom($this->tokens);
