@@ -3,6 +3,7 @@ namespace TheSeer\Tokenizer;
 
 use  DOMDocument;
 use PHPUnit\Framework\TestCase;
+use ReflectionClass;
 use XMLWriter;
 use function file_get_contents;
 
@@ -14,6 +15,10 @@ class XMLSerializerTest extends TestCase {
     private $tokens;
 
     protected function setUp(): void {
+        $class = new ReflectionClass(XMLSerializer::class);
+        var_dump($class->getFileName());
+        exit();
+
         $this->tokens = unserialize(
             file_get_contents(__DIR__ . '/_files/test.php.tokens'),
             [TokenCollection::class]
