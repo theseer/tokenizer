@@ -86,7 +86,12 @@ return (new PhpCsFixer\Config())
             'multiline_whitespace_before_semicolons'        => true,
             'native_constant_invocation'                    => true,
             'native_function_casing'                        => true,
-            'native_function_invocation'                    => true,
+            'global_namespace_import'                       => [
+                'import_classes'   => true,
+                'import_constants' => true,
+                'import_functions' => true,
+            ],
+            'native_function_invocation'                    => false,
             'new_with_braces'                               => false,
             'no_alias_functions'                            => true,
             'no_alternative_syntax'                         => true,

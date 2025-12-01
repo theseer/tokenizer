@@ -1,8 +1,10 @@
 <?php declare(strict_types = 1);
 namespace TheSeer\Tokenizer;
 
-class Tokenizer {
+use PhpToken;
+use function preg_split;
 
+class Tokenizer {
     /**
      * Token Map for "non-tokens"
      *
@@ -46,7 +48,7 @@ class Tokenizer {
             return $result;
         }
 
-        $tokens = \PhpToken::tokenize($source);
+        $tokens = PhpToken::tokenize($source);
 
         $lastToken = new Token(
             $tokens[0]->line,
@@ -68,7 +70,7 @@ class Tokenizer {
             }
 
             $line   = $tok->line;
-            $values = \preg_split('/\R+/Uu', $tok->text);
+            $values = preg_split('/\R+/Uu', $tok->text);
 
             if (!$values) {
                 $result->addToken(
@@ -109,12 +111,12 @@ class Tokenizer {
             ''
         );
 
-        $final = new TokenCollection();
+        $final    = new TokenCollection();
         $prevLine = $prev->getLine();
 
         foreach ($tokens as $token) {
             $line = $token->getLine();
-            $gap = $line - $prevLine;
+            $gap  = $line - $prevLine;
 
             while ($gap > 1) {
                 $linebreak = new Token(
