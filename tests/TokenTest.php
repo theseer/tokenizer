@@ -4,7 +4,6 @@ namespace TheSeer\Tokenizer;
 use PHPUnit\Framework\TestCase;
 
 class TokenTest extends TestCase {
-
     /** @var Token */
     private $token;
 

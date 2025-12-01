@@ -8,9 +8,8 @@ use PHPUnit\Framework\TestCase;
  * @ticket https://github.com/theseer/tokenizer/issues/18
  */
 class Issue18Test extends TestCase {
-
-    public function testIssueNoLongerOccurs() {
-        $result = (new Tokenizer)->parse(\file_get_contents(__DIR__ . '/_files/Issue-18.php'));
+    public function testIssueNoLongerOccurs(): void {
+        $result = (new Tokenizer)->parse(file_get_contents(__DIR__ . '/_files/Issue-18.php'));
 
         $dom = (new XMLSerializer())->toDom($result);
 
@@ -18,5 +17,4 @@ class Issue18Test extends TestCase {
 
         $this->assertEquals('{binary data}', $node->textContent);
     }
-
 }

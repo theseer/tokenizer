@@ -7,7 +7,6 @@ use PHPUnit\Framework\TestCase;
  * @covers \TheSeer\Tokenizer\TokenCollection
  */
 class TokenCollectionTest extends TestCase {
-
     /** @var TokenCollection */
     private $collection;
 
