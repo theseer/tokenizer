@@ -213,6 +213,7 @@ return (new PhpCsFixer\Config())
             ->files()
             ->in(__DIR__ . '/src')
             ->in(__DIR__ . '/tests')
+            ->exclude('_files')
             ->notName('*.phpt')
             ->notName('autoload.php')
     );
