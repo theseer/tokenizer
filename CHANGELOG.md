@@ -2,6 +2,18 @@
 
 All notable changes to Tokenizer are documented in this file using the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [2.0.0] - 2025-12-06
+
+This release bumps the minimum version required to PHP 8.1.
+
+### Added
+
+- New API `XMLSerializer::appendToWriter` to allow easier integration and better performance when writing fragments (Thanks @staabm)
+
+### Changed
+
+- Internal change: Now uses `PHPToken::tokenize` in favor of `token_get_all` (requires PHP 8+) (Thanks @staabm)
+
 ## [1.3.1] - 2025-111-17
 
 ### Fixed
