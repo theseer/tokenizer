@@ -45,4 +45,4 @@ jobs:
         run: ./tools/phpab --output ./src/autoload.php ./src
 
       - name: Run unit tests (phpunit)
-        run: ./tools/phpunit
+        run: ./tools/phpunit --no-coverage
