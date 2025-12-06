@@ -39,6 +39,8 @@ jobs:
           tools: phive
 
       - name: Install tools (phive)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: phive install --trust-gpg-keys 4AA394086372C20A,2A8299CE842DD38C,E82B2FB314E9906E
 
       - name: Generate Autoloader (phpab)
