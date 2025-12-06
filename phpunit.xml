@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd" bootstrap="src/autoload.php"
-         backupGlobals="false" beStrictAboutOutputDuringTests="true" beStrictAboutTestsThatDoNotTestAnything="true"
-         beStrictAboutTodoAnnotatedTests="true" verbose="true">
-
-    <coverage processUncoveredFiles="true">
-        <include>
-            <directory suffix=".php">src</directory>
-        </include>
-        <report>
-            <html outputDirectory="build/coverage/html" lowUpperBound="60" highLowerBound="90" />
-        </report>
-    </coverage>
-
-    <testsuite name="Tokenizer">
-        <directory suffix="Test.php">tests</directory>
-    </testsuite>
-
+<phpunit
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd"
+        bootstrap="src/autoload.php"
+        backupGlobals="false"
+        beStrictAboutOutputDuringTests="true"
+        beStrictAboutTestsThatDoNotTestAnything="true">
+  <coverage>
+    <report>
+      <html outputDirectory="build/coverage/html" lowUpperBound="60" highLowerBound="90"/>
+    </report>
+  </coverage>
+  <testsuite name="Tokenizer">
+    <directory suffix="Test.php">tests</directory>
+  </testsuite>
+  <source>
+    <include>
+      <directory suffix=".php">src</directory>
+    </include>
+  </source>
 </phpunit>
