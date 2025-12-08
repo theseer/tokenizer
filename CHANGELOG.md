@@ -2,6 +2,13 @@
 
 All notable changes to Tokenizer are documented in this file using the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [2.0.1] - 2025-12-08
+
+### Fixed
+
+- Removed the custom token `T_AMPERSAND` as PHP 8.1+ provides tokens for it already and our 2.0.0 release overwrote it. See [#44](https://github.com/theseer/tokenizer/issues/44) for details. 
+
+
 ## [2.0.0] - 2025-12-06
 
 This release bumps the minimum version required to PHP 8.1.
