@@ -32,7 +32,6 @@ class Tokenizer {
         ':' => 'T_COLON',
         '"' => 'T_DOUBLE_QUOTES',
         '@' => 'T_AT',
-        '&' => 'T_AMPERSAND',
         '%' => 'T_PERCENT',
         '|' => 'T_PIPE',
         '$' => 'T_DOLLAR',
