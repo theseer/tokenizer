@@ -19,6 +19,14 @@ class TokenizerTest extends TestCase {
         );
     }
 
+    public function testParsingCodeWithAmpersandReturnsCorrectToken(): void {
+        $result = (new Tokenizer())->parse('<?php function x(&$a) {}');
+        $this->assertEquals(
+            'T_AMPERSAND_FOLLOWED_BY_VAR_OR_VARARG',
+            $result[5]->getName()
+        );
+    }
+
     /**
      * @ticket https://github.com/theseer/tokenizer/issues/13
      */
